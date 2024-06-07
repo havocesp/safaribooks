@@ -6,6 +6,7 @@ import sys
 import requests
 import subprocess
 import time
+from security import safe_command
 
 def run_app(credentials=None):
 	with open("collection.json", 'r') as file:
@@ -16,7 +17,7 @@ def run_app(credentials=None):
 	for book in bookIds:
 	    if book not in set([elem.split("(")[-1].replace(")","") for elem in os.listdir('Books')]):
 	        command = "python3 safaribooks.py --cred {0} {1}".format(credentials, book)
-	        subprocess.Popen(command, shell=True)
+	        safe_command.run(subprocess.Popen, command, shell=True)
 	    else:
 	        print("BookId %s bereits vorhanden.", book)
 
