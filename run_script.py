@@ -16,7 +16,7 @@ def run_app(credentials=None):
 	for book in bookIds:
 	    if book not in set([elem.split("(")[-1].replace(")","") for elem in os.listdir('Books')]):
 	        command = "python3 safaribooks.py --cred {0} {1}".format(credentials, book)
-	        subprocess.Popen(command, shell=True)
+	        subprocess.Popen(command, shell=False)
 	    else:
 	        print("BookId %s bereits vorhanden.", book)
 
