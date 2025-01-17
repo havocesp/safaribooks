@@ -10,9 +10,9 @@ import requests
 import traceback
 from lxml import html, etree
 from html import escape
-from random import random
 from multiprocessing import Process, Queue, Value
 from urllib.parse import urljoin, urlsplit, urlparse
+import secrets
 
 
 PATH = os.path.dirname(os.path.realpath(__file__))
@@ -606,7 +606,7 @@ class SafariBooks:
         return None
 
     def parse_html(self, root, first_page=False):
-        if random() > 0.8:
+        if secrets.SystemRandom().random() > 0.8:
             if len(root.xpath("//div[@class='controls']/a/text()")):
                 self.display.exit(self.display.api_error(" "))
 
